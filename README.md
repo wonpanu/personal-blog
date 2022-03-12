@@ -1,7 +1,7 @@
 # Personal Blog
 
 ### TL;DR
-Implement my personal blog using Next.js + Tailwind CSS for frontend and Go + Fiber + MongoDB for backend
+Implement my personal blog using ```Next.js + Tailwind CSS``` for frontend and ```Go + Fiber + MongoDB``` for backend
 
 ### To run web
 ```
