@@ -19,7 +19,6 @@ $go run cmd/main.go
 ```
 .
 ├── web
-│   │
 │   └── src
 │       ├── components/
 │       │   └── ...
@@ -32,7 +31,6 @@ $go run cmd/main.go
 │       └── util/
 │           └── ...
 └── service
-    │
     ├── cmd/
     │ 
     └── pkg
