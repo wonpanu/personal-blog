@@ -6,6 +6,7 @@ Implement my personal blog using ``` Next.js + Tailwind CSS ``` for frontend and
 ### To run web
 ```
 $cd web
+$npm install
 $npm run dev
 ```
 
