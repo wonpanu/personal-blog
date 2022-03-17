@@ -9,7 +9,13 @@ $cd web
 $npm run dev
 ```
 
+### To run MongoDB docker
+```
+$docker-compose up -d
+```
+
 ### To run service
+##### Please run MongoDB docker before run service
 ```
 $cd service
 $go run cmd/main.go
