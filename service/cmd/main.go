@@ -47,7 +47,10 @@ func connectMongoDB() (*mongo.Client, error) {
 func main() {
 	fmt.Println("🎉 Welcome to Personal Blog service 🙂")
 
-	godotenv.Load(".env")
+	err := godotenv.Load(".env")
+	if err != nil {
+		panic("Failed to load .env file")
+	}
 
 	client, err := connectMongoDB()
 	defer client.Disconnect(context.TODO())
