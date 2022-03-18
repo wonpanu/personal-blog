@@ -1,9 +1,10 @@
 package handler
 
 import (
+	"fmt"
 	"log"
 
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/wonpanu/personal-blog/service/pkg/entity"
 	"github.com/wonpanu/personal-blog/service/pkg/usecase"
 )
@@ -69,7 +70,7 @@ func (r BlogHandler) DeleteByBlogID(c *fiber.Ctx) error {
 		log.Println(err)
 		return c.Status(fiber.ErrBadRequest.Code).SendString("Fail to delete a blog by id.")
 	}
-	return c.Status(fiber.StatusOK).SendString("Delete blog id %d success.", ID)
+	return c.Status(fiber.StatusOK).SendString(fmt.Sprintf("Delete blog id %s success.", ID))
 }
 
 func NewBlogHandler(blogUsecase usecase.IBlogUsecase) BlogHandler {
