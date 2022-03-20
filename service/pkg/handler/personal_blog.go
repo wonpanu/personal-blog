@@ -10,7 +10,7 @@ import (
 )
 
 type BlogHandler struct {
-	uc usecase.IBlogUsecase
+	Usecase usecase.IBlogUsecase
 }
 
 func (r BlogHandler) Create(c *fiber.Ctx) error {
@@ -20,7 +20,7 @@ func (r BlogHandler) Create(c *fiber.Ctx) error {
 		log.Println(err, body)
 		return c.Status(fiber.ErrBadRequest.Code).SendString("Invalid Payload!")
 	}
-	reponse, err := r.uc.Create(body)
+	reponse, err := r.Usecase.Create(body)
 	if err != nil {
 		log.Println(err)
 		return c.Status(fiber.ErrBadRequest.Code).SendString("Fail to create a blog.")
@@ -29,7 +29,7 @@ func (r BlogHandler) Create(c *fiber.Ctx) error {
 }
 
 func (r BlogHandler) GetAll(c *fiber.Ctx) error {
-	reponse, err := r.uc.GetAll()
+	reponse, err := r.Usecase.GetAll()
 	if err != nil {
 		log.Println(err)
 		return c.Status(fiber.StatusInternalServerError).SendString("Fail to get all blogs.")
@@ -39,7 +39,7 @@ func (r BlogHandler) GetAll(c *fiber.Ctx) error {
 
 func (r BlogHandler) GetByBlogID(c *fiber.Ctx) error {
 	ID := c.Params("id")
-	response, err := r.uc.GetByBlogID(ID)
+	response, err := r.Usecase.GetByBlogID(ID)
 	if err != nil {
 		log.Println(err)
 		return c.Status(fiber.StatusInternalServerError).SendString("Fail to get a blog by id.")
@@ -55,7 +55,7 @@ func (r BlogHandler) UpdateByBlogID(c *fiber.Ctx) error {
 		log.Println(err, body)
 		return c.Status(fiber.ErrBadRequest.Code).SendString("Invalid Payload!")
 	}
-	response, err := r.uc.UpdateByBlogID(ID, body)
+	response, err := r.Usecase.UpdateByBlogID(ID, body)
 	if err != nil {
 		log.Println(err)
 		return c.Status(fiber.ErrBadRequest.Code).SendString("Fail to update a blog by id.")
@@ -65,7 +65,7 @@ func (r BlogHandler) UpdateByBlogID(c *fiber.Ctx) error {
 
 func (r BlogHandler) DeleteByBlogID(c *fiber.Ctx) error {
 	ID := c.Params("id")
-	err := r.uc.DeleteByBlogID(ID)
+	err := r.Usecase.DeleteByBlogID(ID)
 	if err != nil {
 		log.Println(err)
 		return c.Status(fiber.ErrBadRequest.Code).SendString("Fail to delete a blog by id.")
@@ -75,6 +75,6 @@ func (r BlogHandler) DeleteByBlogID(c *fiber.Ctx) error {
 
 func NewBlogHandler(blogUsecase usecase.IBlogUsecase) BlogHandler {
 	return BlogHandler{
-		uc: blogUsecase,
+		Usecase: blogUsecase,
 	}
 }
