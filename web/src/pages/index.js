@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
 import Date from "../components/date";
 
 import { getSortedPostsData } from "../utils/posts";
@@ -21,38 +20,34 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>
-          👋 Hi, I am currently working as Junior Software Engineer 👨‍💻 to
-          develop and maintain ZOCIAL EYE social listening and analytics tool
-          (https://wisesight.com/zocialeye/)
-        </p>
-        <p>
-          <b>GitHub:</b> https://github.com/wonpanu
-        </p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{" "}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
-
-      {/* Add this <section> tag below the existing <section> tag */}
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
+      <div className="max-w-2xl mx-auto pb-16 px-4 sm:pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                {date && <Date dateString={date} />}
-              </small>
-            </li>
+            <div
+              key={id}
+              className="bg-white rounded-lg border border-gray-200 shadow-md max-w-xs"
+            >
+              <a href="#">
+                <img
+                  className="rounded-t-lg"
+                  src="/images/default-img.jpg"
+                  alt=""
+                />
+              </a>
+              <div className="p-5">
+                <a href={`/posts/${id}`}>
+                  <h5 className="font-bold tracking-tight text-gray-900">
+                    {title}
+                  </h5>
+                </a>
+                <small className={utilStyles.lightText}>
+                  {date && <Date dateString={date} />}
+                </small>
+              </div>
+            </div>
           ))}
-        </ul>
-      </section>
+        </div>
+      </div>
     </Layout>
   );
 }
